@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Vulpecula\LaravelVatsense\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class LaravelVatsenseCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'laravel-vatsense';
 
     public $description = 'My command';
 

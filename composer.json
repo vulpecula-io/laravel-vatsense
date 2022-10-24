@@ -1,17 +1,17 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "vulpecula-io/laravel-vatsense",
+    "description": " Use the vatsense api within Laravel applications.",
     "keywords": [
-        ":vendor_name",
+        "vulpecula-io",
         "laravel",
-        ":package_slug"
+        "laravel-vatsense"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/vulpecula-io/laravel-vatsense",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Richard Browne",
+            "email": "hello@vulpecula.io",
             "role": "Developer"
         }
     ],
@@ -35,13 +35,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+            "Vulpecula\\LaravelVatsense\\": "src",
+            "Vulpecula\\LaravelVatsense\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "Vulpecula\\LaravelVatsense\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -61,10 +61,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Vulpecula\\LaravelVatsense\\LaravelVatsenseServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "LaravelVatsense": "Vulpecula\\LaravelVatsense\\Facades\\LaravelVatsense"
             }
         }
     },
