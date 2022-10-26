@@ -1,10 +1,10 @@
 <?php
 
-namespace Vulpecula\LaravelVatsense\Commands;
+namespace Vulpecula\Vatsense\Commands;
 
 use Illuminate\Console\Command;
 
-class LaravelVatsenseCommand extends Command
+class VatsenseCommand extends Command
 {
     public $signature = 'laravel-vatsense';
 

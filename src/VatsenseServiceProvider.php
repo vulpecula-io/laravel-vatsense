@@ -1,12 +1,11 @@
 <?php
 
-namespace Vulpecula\LaravelVatsense;
+namespace Vulpecula\Vatsense;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Vulpecula\LaravelVatsense\Commands\LaravelVatsenseCommand;
 
-class LaravelVatsenseServiceProvider extends PackageServiceProvider
+class VatsenseServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
@@ -17,9 +16,6 @@ class LaravelVatsenseServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('laravel-vatsense')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_laravel-vatsense_table')
-            ->hasCommand(LaravelVatsenseCommand::class);
+            ->hasConfigFile();
     }
 }

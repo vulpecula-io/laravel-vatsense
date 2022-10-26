@@ -52,8 +52,8 @@ php artisan vendor:publish --tag="laravel-vatsense-views"
 ## Usage
 
 ```php
-$laravelVatsense = new Vulpecula\LaravelVatsense();
-echo $laravelVatsense->echoPhrase('Hello, Vulpecula!');
+$vatsense = new Vulpecula\Vatsense();
+echo $vatsense->echoPhrase('Hello, Vulpecula!');
 ```
 
 ## Testing

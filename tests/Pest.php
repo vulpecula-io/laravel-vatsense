@@ -1,5 +1,5 @@
 <?php
 
-use Vulpecula\LaravelVatsense\Tests\TestCase;
+use Vulpecula\Vatsense\Tests\TestCase;
 
 uses(TestCase::class)->in(__DIR__);

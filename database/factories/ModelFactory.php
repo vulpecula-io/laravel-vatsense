@@ -1,6 +1,6 @@
 <?php
 
-namespace Vulpecula\LaravelVatsense\Database\Factories;
+namespace Vulpecula\Vatsense\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 

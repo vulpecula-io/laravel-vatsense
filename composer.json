@@ -35,13 +35,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Vulpecula\\LaravelVatsense\\": "src",
-            "Vulpecula\\LaravelVatsense\\Database\\Factories\\": "database/factories"
+            "Vulpecula\\Vatsense\\": "src",
+            "Vulpecula\\Vatsense\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Vulpecula\\LaravelVatsense\\Tests\\": "tests"
+            "Vulpecula\\Vatsense\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -61,10 +61,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Vulpecula\\LaravelVatsense\\LaravelVatsenseServiceProvider"
+                "Vulpecula\\Vatsense\\VatsenseServiceProvider"
             ],
             "aliases": {
-                "LaravelVatsense": "Vulpecula\\LaravelVatsense\\Facades\\LaravelVatsense"
+                "Vatsense": "Vulpecula\\Vatsense\\Facades\\Vatsense"
             }
         }
     },
