@@ -3,7 +3,8 @@
 namespace Vulpecula\Vatsense;
 
 use Illuminate\Support\Facades\Http;
-use Vulpecula\Vatsense\Exceptions\VatSenseCallFailed;
+use Vulpecula\Vatsense\Exceptions\VatSenseApiError;
+use Vulpecula\Vatsense\Exceptions\VatSenseException;
 
 /**
  * Class Vatsense.
@@ -15,6 +16,12 @@ class Vatsense
      */
     protected string $baseUrl = 'https://api.vatsense.com/1.0/';
 
+    public function __construct() {
+        if (is_null(config('vatsense.api_key'))) {
+            throw VatSenseException::invalidConfig();
+        }
+    }
+
     /**
      * Function get.
      *
@@ -22,17 +29,17 @@ class Vatsense
      * @param  array  $args
      * @return array|mixed
      *
-     * @throws VatSenseCallFailed
+     * @throws VatSenseApiError
      */
     private function get(string $endpoint = 'rates', array $args = []): mixed
     {
-        $response = Http::get($this->baseUrl.$endpoint, $args);
+        ray()->showHttpClientRequests();
+        $response = Http::withBasicAuth('user', config('vatsense.api_key'))
+            ->get($this->baseUrl.$endpoint, $args);
 
         if ($response->failed() === true) {
-            // Todo: throw exception.
-
             $query = $endpoint.'?'.collect($args)->join('&');
-            throw VatSenseCallFailed::get($query, $response->json('error'));
+            throw VatSenseApiError::get($query, $response->json('error'));
         }
 
         return $response->json('data');
@@ -43,7 +50,7 @@ class Vatsense
      *
      * @return array|mixed
      *
-     * @throws VatSenseCallFailed
+     * @throws VatSenseApiError
      */
     public function allRates(): mixed
     {
@@ -57,11 +64,11 @@ class Vatsense
      * @param  string|null  $ip_address
      * @return array|mixed
      *
-     * @throws VatSenseCallFailed
+     * @throws VatSenseApiError
      */
-    public function filterRates(?string $country_code, ?string $ip_address): mixed
+    public function filterRates(?string $country_code = null, ?string $ip_address = null): mixed
     {
-        return $this->get('rates/tax_rate', compact($country_code, $ip_address));
+        return $this->get('rates/tax_rate', compact('country_code', 'ip_address'));
     }
 
     /**
@@ -69,7 +76,7 @@ class Vatsense
      *
      * @return array|mixed
      *
-     * @throws VatSenseCallFailed
+     * @throws VatSenseApiError
      */
     public function allRateTypes(): mixed
     {
@@ -85,11 +92,11 @@ class Vatsense
      * @param  string|null  $type
      * @return array|mixed
      *
-     * @throws VatSenseCallFailed
+     * @throws VatSenseApiError
      */
-    public function findRate(?string $country_code, ?string $ip_address, ?bool $eu, ?string $type): mixed
+    public function findRate(?string $country_code = null, ?string $ip_address = null, ?bool $eu = null, ?string $type = null): mixed
     {
-        return $this->get('rates/tax_rate', compact($country_code, $ip_address, $eu, $type));
+        return $this->get('rates/tax_rate', compact('country_code', 'ip_address', 'eu', 'type'));
     }
 
     /**
@@ -101,11 +108,11 @@ class Vatsense
      * @param  string|null  $type
      * @return array|mixed
      *
-     * @throws VatSenseCallFailed
+     * @throws VatSenseApiError
      */
-    public function quickRate(?string $country_code, ?string $ip_address, ?bool $eu, ?string $type): mixed
+    public function quickRate(?string $country_code = null, ?string $ip_address = null, ?bool $eu = null, ?string $type = null): mixed
     {
-        return $this->get('rates/rate', compact($country_code, $ip_address, $eu, $type));
+        return $this->get('rates/rate', compact('country_code', 'ip_address', 'eu', 'type'));
     }
 
     /**
@@ -113,7 +120,7 @@ class Vatsense
      *
      * @return array|mixed
      *
-     * @throws VatSenseCallFailed
+     * @throws VatSenseApiError
      */
     public function allCountries(): mixed
     {
@@ -127,24 +134,24 @@ class Vatsense
      * @param  string|null  $ip_address
      * @return array|mixed
      *
-     * @throws VatSenseCallFailed
+     * @throws VatSenseApiError
      */
-    public function filterCountries(?string $country_code, ?string $ip_address): mixed
+    public function filterCountries(?string $country_code = null, ?string $ip_address = null): mixed
     {
-        return $this->get('countries', compact($country_code, $ip_address));
+        return $this->get('countries', compact('country_code', 'ip_address'));
     }
 
     /**
      * Function validateVatNumber.
      *
-     * @param  string  $vatNumber
-     * @param  string|null  $requester
-     * @return array|mixed
+     * @param  string      $vat_number
+     * @param  string|null $requester
      *
-     * @throws VatSenseCallFailed
+     * @return array|mixed
+     * @throws VatSenseApiError
      */
-    public function validateVatNumber(string $vatNumber, ?string $requester): mixed
+    public function validateVatNumber(string $vat_number, ?string $requester = null): mixed
     {
-        return $this->get('validate', compact($vatNumber, $requester));
+        return $this->get('validate', compact('vat_number', 'requester'));
     }
 }
