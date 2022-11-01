@@ -16,7 +16,8 @@ class Vatsense
      */
     protected string $baseUrl = 'https://api.vatsense.com/1.0/';
 
-    public function __construct() {
+    public function __construct()
+    {
         if (is_null(config('vatsense.api_key'))) {
             throw VatSenseException::invalidConfig();
         }
@@ -144,10 +145,10 @@ class Vatsense
     /**
      * Function validateVatNumber.
      *
-     * @param  string      $vat_number
-     * @param  string|null $requester
-     *
+     * @param  string  $vat_number
+     * @param  string|null  $requester
      * @return array|mixed
+     *
      * @throws VatSenseApiError
      */
     public function validateVatNumber(string $vat_number, ?string $requester = null): mixed
