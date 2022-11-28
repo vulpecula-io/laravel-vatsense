@@ -43,7 +43,7 @@ class Vatsense
             throw VatSenseApiError::get($query, $response->json('error'));
         }
 
-        return $response->json('data');
+        return $response->object()->data;
     }
 
     /**

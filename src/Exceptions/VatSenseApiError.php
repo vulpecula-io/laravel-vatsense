@@ -8,7 +8,7 @@ final class VatSenseApiError extends Exception
 {
     public static function get(string $query, $error): self
     {
-        return new static("{$error['title']}: The query `{$query}` failed with error details: `{$error['details']}`.");
+        return new static("{$error['title']}: The query `{$query}` failed with error details: `{$error['detail']}`.");
     }
 
     public static function invalidConfig(string $string): self
