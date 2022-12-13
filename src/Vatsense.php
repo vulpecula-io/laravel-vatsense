@@ -19,7 +19,7 @@ class Vatsense
     public function __construct()
     {
         if (is_null(config('vatsense.api_key'))) {
-            throw VatSenseException::invalidConfig();
+            throw VatSenseException::invalidConfig('vatsense.api_key');
         }
     }
 
