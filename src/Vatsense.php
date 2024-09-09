@@ -11,9 +11,6 @@ use Vulpecula\Vatsense\Exceptions\VatSenseException;
  */
 class Vatsense
 {
-    /**
-     * @var string
-     */
     protected string $baseUrl = 'https://api.vatsense.com/1.0/';
 
     public function __construct()
@@ -26,8 +23,6 @@ class Vatsense
     /**
      * Function get.
      *
-     * @param  string  $endpoint
-     * @param  array  $args
      * @return array|mixed
      *
      * @throws VatSenseApiError
@@ -60,8 +55,6 @@ class Vatsense
     /**
      * Function filterRates.
      *
-     * @param  string|null  $country_code
-     * @param  string|null  $ip_address
      * @return array|mixed
      *
      * @throws VatSenseApiError
@@ -86,10 +79,6 @@ class Vatsense
     /**
      * Function findRate.
      *
-     * @param  string|null  $country_code
-     * @param  string|null  $ip_address
-     * @param  bool|null  $eu
-     * @param  string|null  $type
      * @return array|mixed
      *
      * @throws VatSenseApiError
@@ -102,10 +91,6 @@ class Vatsense
     /**
      * Function quickRate.
      *
-     * @param  string|null  $country_code
-     * @param  string|null  $ip_address
-     * @param  bool|null  $eu
-     * @param  string|null  $type
      * @return array|mixed
      *
      * @throws VatSenseApiError
@@ -130,8 +115,6 @@ class Vatsense
     /**
      * Function filterCountries.
      *
-     * @param  string|null  $country_code
-     * @param  string|null  $ip_address
      * @return array|mixed
      *
      * @throws VatSenseApiError
@@ -144,8 +127,6 @@ class Vatsense
     /**
      * Function validateVatNumber.
      *
-     * @param  string  $vat_number
-     * @param  string|null  $requester
      * @return array|mixed
      *
      * @throws VatSenseApiError
