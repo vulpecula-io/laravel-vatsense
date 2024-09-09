@@ -34,7 +34,6 @@ class Vatsense
      */
     private function get(string $endpoint = 'rates', array $args = []): mixed
     {
-        ray()->showHttpClientRequests();
         $response = Http::withBasicAuth('user', config('vatsense.api_key'))
             ->get($this->baseUrl.$endpoint, $args);
 
